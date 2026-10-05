@@ -195,14 +195,14 @@ services:
       - 8080:8080
     environment:
       SB_catalogUrl: "http://localhost:8084"
-      # # Chapter 8: log in against the mock OIDC server. `historyMode` must be
-      # # "history" for OIDC (it is STAC Browser's default), and the redirect URI is
-      # # always <browser origin>/auth -- here http://localhost:8080/auth.
-      # # automaticSilentRenew is off because the mock server issues no refresh tokens.
-      # SB_authConfig: >-
-      #   {"type":"openIdConnect",
-      #   "openIdConnectUrl":"http://localhost:8085/.well-known/openid-configuration",
-      #   "oidcConfig":{"client_id":"stac-browser","automaticSilentRenew":false}}
+      # Chapter 8: log in against the mock OIDC server. `historyMode` must be
+      # "history" for OIDC (it is STAC Browser's default), and the redirect URI is
+      # always <browser origin>/auth -- here http://localhost:8080/auth.
+      # automaticSilentRenew is off because the mock server issues no refresh tokens.
+      SB_authConfig: >-
+        {"type":"openIdConnect",
+        "openIdConnectUrl":"http://localhost:8085/.well-known/openid-configuration",
+        "oidcConfig":{"client_id":"stac-browser","automaticSilentRenew":false}}
     depends_on:
       - stac-auth-proxy
       - mock-oidc

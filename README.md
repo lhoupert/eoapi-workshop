@@ -1,29 +1,41 @@
 # eoAPI Workshop
 
-[![Binder](https://binder.opensci.2i2c.cloud/badge_logo.svg)](https://binder.opensci.2i2c.cloud/v2/gh/developmentseed/eoapi-workshop/main?urlpath=%2Fdoc%2Ftree%2Fdocs%2F00-introduction.ipynb)
-
 This repository contains the materials for the eoAPI workshop.
 
 The materials are all contained in Jupyter notebooks that participants can interact with in their web browser.
 
 ## Workshop Participation
 
-If you're participating in an eoAPI workshop, you'll access the notebooks through a Jupyter Hub operated by [2i2c](https://2i2c.org).
+The notebooks in [`docs/`](./docs/) run against an eoAPI stack. How you reach it depends on how your workshop is deployed; your instructor will tell you which case applies.
 
-### Getting Started as a Participant
+### If you were given your own JupyterLab URL and password
+
+This is the per-participant setup on Kubernetes ([`participant/README.md`](./participant/README.md)): a full eoAPI stack runs next to your JupyterLab, for you alone.
+
+1. **Open your JupyterLab** - Log in at your URL with your password
+2. **Open a notebook** - The notebooks are in the `docs/` folder; start with [`00-introduction.ipynb`](./docs/00-introduction.ipynb)
+3. **Find your services** - The last cell of notebook 00 lists the links to your own STAC API, raster and vector APIs, STAC Browser and STAC Manager. Database credentials are already set, so no workshop token is needed.
+
+### If your workshop runs on the shared AWS deployment
+
+You'll access the notebooks through a Jupyter Hub operated by [2i2c](https://2i2c.org), or on Binder: [![Binder](https://binder.opensci.2i2c.cloud/badge_logo.svg)](https://binder.opensci.2i2c.cloud/v2/gh/developmentseed/eoapi-workshop/main?urlpath=%2Fdoc%2Ftree%2Fdocs%2F00-introduction.ipynb)
 
 1. **Access the Jupyter Hub** - Your instructor will provide a link to the workshop's Jupyter Hub
 2. **Open a notebook** - Navigate to the `docs/` folder and open any notebook
 3. **Enter the workshop token** - When you get to the [second notebook](./docs/02-database.ipynb), you'll be prompted to enter the workshop token provided by your instructor (via `workshop_setup.setup()`)
 4. **Start learning!** - All configuration (database credentials, API endpoints) will be automatically set up
 
-The workshop uses a deployed eoAPI stack with the following services:
+This deployment is one eoAPI stack shared by all participants ([DEPLOYMENT.md](./DEPLOYMENT.md)), with the following services:
 
 - **STAC API** (`stac-fastapi-pgstac`) - For searching STAC metadata
 - **Raster API** (`titiler-pgstac`) - For visualizing raster data dynamically
 - **Vector API** (`tipg`) - For serving vector features and tiles
 
-All services are accessible via custom domains following the pattern: `{service}.{PROJECT}.eoapi.dev`
+All services are accessible via custom domains following the pattern: `{PROJECT}-{service}.eoapi.dev` (for example `workshop-stac.eoapi.dev`)
+
+### On your own machine
+
+Run the notebooks and a full eoAPI stack with docker compose: see [Local Development](#local-development) below.
 
 ## Local Development
 
